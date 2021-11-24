@@ -1,0 +1,29 @@
+query {
+    author(id: 42) {
+        posts {
+            author {
+                posts {
+                    author {
+                        posts {
+                            author {
+                                posts {
+                                    #...
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+query {
+    authors(first: 1000) { # ! RIP server...
+        name
+        posts(last: 100) {
+            title
+            content
+        }
+    }
+}

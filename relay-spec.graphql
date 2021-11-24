@@ -1,0 +1,46 @@
+# where it all starts:
+# the Node interface *guarantees* globally unique IDs
+# this makes cache-invalidation *so much easier* 
+interface Node {
+  id: ID!
+}
+
+type Faction implements Node {
+  id: ID!
+  name: String
+  ships: ShipConnection
+}
+
+type Ship implements Node {
+  id: ID!
+  name: String
+}
+
+# the connection type can implement an interface too
+# here they simply enforce a standard naming convention
+# this distinguishes between: 
+# object types that can be thought of as 'entities' 
+# connection types that can be thought of as 'edges'
+# extending the graph metaphor to its logical conclusion
+type ShipConnection {
+  edges: [ShipEdge]
+  pageInfo: PageInfo!
+}
+
+type ShipEdge {
+  cursor: String!
+  node: Ship
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type Query {
+  rebels: Faction
+  empire: Faction
+  node(id: ID!): Node
+}
