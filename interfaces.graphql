@@ -1,0 +1,22 @@
+
+interface Character {
+    name: String!
+    ID: ID!
+    inventory: [Item]!
+    features: [Feature]!
+    speed: Int!
+}
+
+type Fighter implements Character {
+    leftHand: Weapon
+    rightHand: Shield
+    armor: [Armor]!
+}
+
+type Wizard implements Character {
+    spellsKnown: [Spell!]!
+    specialization: School!
+    hasMagicWand: Boolean!
+}
+
+union Enemy = Fighter | Wizard | Monster

@@ -12,6 +12,7 @@
     "apollo-client": "^2.6.10",
     "apollo-server": "^3.5.0",
     "express": "^4.17.1",
+    "get-graphql-schema": "^2.1.2",
     "graphql-input-number": "0.0.10"
   }
 }
